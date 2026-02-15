@@ -1,0 +1,85 @@
+.about-page {
+  color: #ffffff;
+}
+
+/* Hero */
+.about-hero {
+  height: 60vh;
+  background: linear-gradient(to right, #000000cc, #000000cc),
+    url("https://images.unsplash.com/photo-1517602302552-471fe67acf66");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+.about-hero-content {
+  margin-left: 80px;
+  max-width: 500px;
+}
+
+.about-hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.about-hero-content span {
+  color: #e50914;
+}
+
+.about-hero-content p {
+  font-size: 18px;
+  color: #cccccc;
+}
+
+/* Content */
+.about-content {
+  padding: 60px 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.about-card {
+  background: #1c1c1c;
+  padding: 30px;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+}
+
+.about-card h2 {
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.about-card p {
+  font-size: 15px;
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+.about-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-card li {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-hero-content {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .about-content {
+    padding: 40px 20px;
+  }
+}

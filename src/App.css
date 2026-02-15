@@ -1,0 +1,9 @@
+.app-content {
+  min-height: calc(100vh - 140px);
+  padding-top: 70px; /* Header height spacing */
+}
+
+.app-content {
+  padding-top: 80px; /* prevents content hiding under header */
+}
+

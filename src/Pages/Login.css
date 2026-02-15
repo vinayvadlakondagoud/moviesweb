@@ -1,0 +1,133 @@
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(to right, #000000cc, #000000cc),
+    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card */
+.login-container {
+  width: 900px;
+  height: 480px;
+  background: #141414;
+  display: flex;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+}
+
+/* Left */
+.login-brand {
+  flex: 1;
+  background: linear-gradient(135deg, #e50914, #b00610);
+  color: #ffffff;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-brand h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.login-brand span {
+  color: #000000;
+  background: #ffffff;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+
+.login-brand p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Right */
+.login-form {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Error */
+.login-error {
+  background: #2b0000;
+  color: #ff6b6b;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/* Inputs */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #cccccc;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #1f1f1f;
+  color: #ffffff;
+}
+
+/* Button */
+.login-btn {
+  margin-top: 10px;
+  padding: 12px;
+  width: 100%;
+  background: #e50914;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.6);
+}
+
+/* Hint */
+.login-hint {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #aaaaaa;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .login-container {
+    width: 90%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .login-brand {
+    display: none;
+  }
+}

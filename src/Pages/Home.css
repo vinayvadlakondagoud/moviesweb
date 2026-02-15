@@ -1,0 +1,64 @@
+.home {
+  background-color: #0f0f0f;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+/* HERO SECTION */
+.hero {
+  min-height: 100vh;
+  width: 100%;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url("https://i.ytimg.com/vi/p7wHWdtV7BI/hq720.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+}
+
+/* CONTENT WRAPPER */
+.hero-content {
+  max-width: 650px;
+  padding: 0 6%;
+}
+
+/* TEXT */
+.hero-content h1 {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.hero-content span {
+  color: #e50914;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+  color: #cfcfcf;
+  line-height: 1.6;
+}
+
+/* BUTTON */
+.hero-btn {
+  padding: 14px 36px;
+  background-color: #e50914;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
