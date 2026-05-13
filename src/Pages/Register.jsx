@@ -1,117 +1,196 @@
 import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./Register.css";
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-  const validate = () => {
-    const newErrors = {};
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-    if (!name.trim()) {
-      newErrors.name = "Full name is required";
-    }
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    if (!email) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Enter a valid email";
-    }
-
-    if (!password) {
-      newErrors.password = "Password is required";
-    } else if (password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
-    }
-
-    if (!confirmPassword) {
-      newErrors.confirmPassword = "Confirm your password";
-    } else if (password !== confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
+  const handleSendOtp = async () => {
+  // ✅ VALIDATE BEFORE SENDING OTP
+  if (!formData.name || !formData.email || !formData.password) {
+    alert("Fill all fields first");
+    return;
+  }
+
+  if (formData.password !== formData.confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const res = await fetch("http://localhost:5000/api/users/send-otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: formData.email,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("OTP sent to your email 📩");
+      setOtpSent(true);
+    } else {
+      alert(data.message);
+    }
+
+  } catch (err) {
+    alert("Server error");
+  }
+
+  setLoading(false);
+};
+
+  const handleRegister = async (e) => {
+  e.preventDefault();
+
+  if (!otp) {
+    alert("Enter OTP");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const res = await fetch("http://localhost:5000/api/users/verify-otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        otp,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
       alert("Registration successful 🎉");
+      navigate("/login");
+    } else {
+      alert(data.message);
     }
-  };
+
+  } catch (err) {
+    alert("Server error");
+  }
+
+  setLoading(false);
+};
 
   return (
-    <div className="login-wrapper">
-      <div className="login-card">
-        {/* Left */}
-        <div className="login-left">
-          <h1>
-            Join <span>MovieHub</span>
-          </h1>
-          <p>
-            Create an account to watch trailers, save favorites & explore the
-            latest movies.
-          </p>
-        </div>
+    <div className="login-page">
+      <div className="login-container register-only">
+        <div className="login-form">
+          <h2>Create Account </h2>
 
-        {/* Right */}
-        <div className="login-right">
-          <h2>Create Account</h2>
-
-          <form onSubmit={handleSubmit}>
-            <div className="input-group">
+          <form onSubmit={handleRegister}>
+            <div className="form-group">
+              <label>Name</label>
               <input
                 type="text"
-                placeholder="Full Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
               />
-              {errors.name && <span className="error">{errors.name}</span>}
             </div>
 
-            <div className="input-group">
+            <div className="form-group">
+              <label>Email</label>
               <input
-                type="text"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
               />
-              {errors.email && <span className="error">{errors.email}</span>}
             </div>
 
-            <div className="input-group">
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {errors.password && (
-                <span className="error">{errors.password}</span>
-              )}
-            </div>
-
-            <div className="input-group">
+            <div className="form-group">
+              <label>Password</label>
               <input
                 type="password"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
               />
-              {errors.confirmPassword && (
-                <span className="error">{errors.confirmPassword}</span>
-              )}
             </div>
 
-            <button type="submit">Register</button>
+            <div className="form-group">
+              <label>Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            {/* 🔥 SEND OTP BUTTON */}
+            {!otpSent && (
+              <button
+                type="button"
+                className="login-btn"
+                onClick={handleSendOtp}
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Send OTP"}
+              </button>
+            )}
+
+            {/* 🔥 OTP INPUT */}
+            {otpSent && (
+              <div className="form-group">
+                <label>Enter OTP</label>
+                <input
+                  type="text"
+                  placeholder="Enter OTP"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  required
+                />
+              </div>
+            )}
+
+            {/* 🔥 REGISTER BUTTON */}
+            {otpSent && (
+              <button type="submit" className="login-btn" disabled={loading}>
+                {loading ? "Registering..." : "Verify & Register"}
+              </button>
+            )}
           </form>
 
-          <p className="auth-footer">
-            Already have an account? <span>Login</span>
+          <p className="login-hint">
+            Already have an account?{" "}
+            <Link to="/login" style={{ color: "#e50914" }}>
+              Login
+            </Link>
           </p>
         </div>
       </div>

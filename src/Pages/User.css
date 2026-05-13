@@ -12,9 +12,15 @@
   padding: 40px 20px;
 }
 
-/* HEADER */
 .user-header {
   margin-bottom: 40px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .user-header h1 {
@@ -27,7 +33,22 @@
   margin-top: 6px;
 }
 
-/* MOVIES SECTION */
+.logout-btn {
+  padding: 8px 16px;
+  background: #ef4444;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
 .movies-section h2 {
   margin-bottom: 20px;
   font-size: 22px;
@@ -39,7 +60,6 @@
   gap: 22px;
 }
 
-/* MOVIE CARD */
 .movie-card {
   background: #020617;
   border-radius: 14px;
@@ -59,7 +79,6 @@
   object-fit: cover;
 }
 
-/* MOVIE INFO */
 .movie-info {
   padding: 14px;
   text-align: center;
@@ -74,4 +93,402 @@
   font-size: 14px;
   color: #38bdf8;
   font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .user-header h1 {
+    font-size: 24px;
+  }
+
+  .movie-poster {
+    height: 240px;
+  }
+}
+
+.movie-card {
+  position: relative;
+  width: 220px;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.movie-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: 0.3s ease;
+}
+
+.movie-description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 15px;
+  opacity: 0;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+}
+
+.movie-card:hover .movie-description {
+  opacity: 1;
+}
+
+.movie-card:hover img {
+  transform: scale(1.1);
+}
+
+button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e50914;
+}
+
+/* 🔥 PROFILE CARD */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #e50914;
+  object-fit: cover;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.profile-info p {
+  margin: 4px 0;
+  color: #94a3b8;
+}
+
+.joined {
+  font-size: 13px;
+}
+
+.watch-count {
+  font-weight: bold;
+  color: #f5c518;
+  margin-top: 5px;
+}
+
+/* 🔥 PREMIUM PROFILE */
+.profile-card.premium {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1e293b, #020617);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.premium-img {
+  width: 100px;
+  height: 100px;
+  border: 3px solid #f5c518;
+}
+
+.profile-info input {
+  display: block;
+  margin-bottom: 8px;
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+}
+
+.stats {
+  display: flex;
+  gap: 15px;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.movies-section h2 {
+  margin-top: 30px;
+  color: #f5c518;
+}
+
+/* 🔥 SECTION */
+.recommend-section {
+  margin-top: 40px;
+}
+
+/* HEADER */
+.recommend-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.recommend-header h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #f5c518;
+}
+
+.ai-tag {
+  font-size: 13px;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: white;
+}
+
+/* 🔥 HORIZONTAL SCROLL */
+.recommend-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.recommend-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.recommend-row::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+/* 🔥 CARD */
+.recommend-card {
+  min-width: 180px;
+  height: 270px;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.recommend-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* 🔥 HOVER EFFECT */
+.recommend-card:hover {
+  transform: scale(1.08);
+  z-index: 2;
+}
+
+/* 🔥 OVERLAY */
+.recommend-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  color: white;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.recommend-card:hover .recommend-overlay {
+  opacity: 1;
+}
+
+/* TEXT */
+.recommend-overlay h3 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.recommend-overlay span {
+  color: #f5c518;
+  font-size: 13px;
+}
+
+.profile-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* GLOW BACKGROUND */
+.banner-bg {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(229,9,20,0.25), transparent);
+  top: -150px;
+  left: -100px;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+/* LEFT */
+.profile-left {
+  z-index: 1;
+}
+
+/* CENTER */
+.profile-center {
+  flex: 1;
+  margin-left: 30px;
+  z-index: 1;
+}
+
+.profile-name {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-email {
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+/* STATS */
+.premium-stats {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+  font-weight: 600;
+  color: #f5c518;
+}
+
+/* EDIT BOX */
+.edit-box {
+  margin-top: 12px;
+}
+
+.edit-box input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  margin-right: 10px;
+}
+
+.edit-box button {
+  padding: 6px 12px;
+  background: #e50914;
+  border: none;
+  border-radius: 6px;
+  color: white;
+}
+
+/* PROFILE IMAGE ENHANCED */
+.premium-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid #f5c518;
+  object-fit: cover;
+  box-shadow: 0 0 30px rgba(245,197,24,0.5);
+}
+
+/* ACTIONS */
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1;
+}
+
+.profile-actions button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: #1e293b;
+  color: white;
+}
+
+.profile-actions button:hover {
+  background: #e50914;
+}
+
+/* FILTER CONTAINER */
+.filter-container {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* SECTION */
+.filter-section h4 {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+/* PILLS */
+.filter-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* BUTTON */
+.filter-pills button {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color: #cbd5f5;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.25s ease;
+}
+
+/* HOVER */
+.filter-pills button:hover {
+  background: linear-gradient(45deg, #2563eb, #7c3aed);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ACTIVE */
+.filter-pills button.active {
+  background: linear-gradient(45deg, #e50914, #ff4d4d);
+  color: white;
+  box-shadow: 0 0 12px rgba(229,9,20,0.6);
+  border: none;
 }

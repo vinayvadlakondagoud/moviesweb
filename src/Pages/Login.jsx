@@ -1,113 +1,154 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // 🔒 Fixed users & roles
-  const users = [
-    {
-      email: "admin@moviehub.com",
-      password: "admin123",
-      role: "admin",
-    },
-    {
-      email: "user@moviehub.com",
-      password: "user123",
-      role: "user",
-    },
-  ];
+  // Handle input change
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
 
-  const handleLogin = (e) => {
+    if (error) setError("");
+  };
+
+  // Handle login
+  const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
+    setLoading(true);
 
-    // Same validation logic
-    if (!email || !password) {
-      setError("All fields are required");
-      return;
-    }
+    try {
+      const response = await fetch("http://localhost:5000/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setError("Enter a valid email");
-      return;
-    }
+      const data = await response.json();
 
-    const matchedUser = users.find(
-      (u) => u.email === email && u.password === password
-    );
+      if (response.ok) {
+        let finalRole = data.role;
 
-    if (!matchedUser) {
-      setError("Invalid email or password");
-      return;
-    }
+        // 🔐 Extra safety check for admin
+        if (data.email === "vinayadmin@gmail.com") {
+          finalRole = "admin";
+        }
 
-    // Save role (for later use)
-    localStorage.setItem("role", matchedUser.role);
-    localStorage.setItem("isLoggedIn", true);
+        // ✅ Store session data
+        sessionStorage.setItem("isLoggedIn", "true");
+        sessionStorage.setItem("role", finalRole);
+        sessionStorage.setItem("name", data.name);
+        sessionStorage.setItem("userName", data.name);
+        sessionStorage.setItem("userId", data._id);
+        localStorage.setItem("token", data.token);
 
-    // Redirect based on role
-    if (matchedUser.role === "admin") {
-      navigate("/admin");
-    } else {
-      navigate("/user");
+        // Optional callback
+        if (onLoginSuccess) onLoginSuccess();
+
+        // 🚀 Redirect based on role
+        if (finalRole === "admin") {
+          navigate("/admin", { replace: true });
+        } else {
+          navigate("/user", { replace: true });
+        }
+
+      } else {
+        setError(data.message || "Invalid email or password");
+      }
+
+    } catch (err) {
+      setError("Server error. Please try again.");
+      console.error("Login Error:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="login-page">
       <div className="login-container">
-        {/* Left Branding */}
-        <div className="login-brand">
-          <h1>
-            Movie<span>Hub</span>
-          </h1>
-          <p>
-            Login to access exclusive movies, ratings and personalized
-            recommendations.
-          </p>
-        </div>
-
-        {/* Login Form */}
         <div className="login-form">
           <h2>Sign In</h2>
 
           {error && <div className="login-error">{error}</div>}
 
           <form onSubmit={handleLogin}>
+            {/* Email */}
             <div className="form-group">
               <label>Email</label>
               <input
-                type="text"
+                type="email"
+                name="email"
                 placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formData.email}
+                onChange={handleChange}
+                required
               />
             </div>
 
+            {/* Password */}
             <div className="form-group">
               <label>Password</label>
               <input
                 type="password"
+                name="password"
                 placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formData.password}
+                onChange={handleChange}
+                required
               />
             </div>
 
-            <button type="submit" className="login-btn">
-              Login
+            {/* Button */}
+            <button
+              type="submit"
+              className="login-btn"
+              disabled={loading}
+            >
+              {loading ? "Signing in..." : "Login"}
             </button>
           </form>
 
+          {/* Links */}
           <p className="login-hint">
-            Admin → admin@moviehub.com / admin123 <br />
-            User → user@moviehub.com / user123
+            <Link
+              to="/forgot-password"
+              style={{
+                fontSize: "14px",
+                color: "#aaaaaa",
+                textDecoration: "none",
+              }}
+            >
+              Forgot Password?
+            </Link>
+
+            <br />
+            <br />
+
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              style={{
+                color: "#e50914",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              Register
+            </Link>
           </p>
         </div>
       </div>

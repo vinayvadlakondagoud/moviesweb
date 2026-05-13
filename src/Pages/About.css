@@ -1,14 +1,14 @@
 .about-page {
   color: #ffffff;
+  padding: 100px 4% 40px;
 }
 
-/* Hero */
 .about-hero {
-  height: 60vh;
+  height: 50vh;
   background: linear-gradient(to right, #000000cc, #000000cc),
-    url("https://images.unsplash.com/photo-1517602302552-471fe67acf66");
-  background-size: cover;
-  background-position: center;
+    url("https://i.ytimg.com/vi/6hqduA_fUqE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAU69GbyngTQ90anTcd3EvmHSQnHQ");
+  background-size: fit;
+  background-position: fit;
   display: flex;
   align-items: center;
 }
@@ -31,8 +31,6 @@
   font-size: 18px;
   color: #cccccc;
 }
-
-/* Content */
 .about-content {
   padding: 60px 80px;
   display: grid;
@@ -72,7 +70,6 @@
   font-size: 15px;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .about-hero-content {
     margin-left: 20px;

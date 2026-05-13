@@ -1,13 +1,15 @@
+/* 🔥 HEADER BASE */
 .header {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(15, 15, 15, 0.95);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* WRAPPER */
 .header-wrapper {
   max-width: 1200px;
   margin: auto;
@@ -17,7 +19,7 @@
   justify-content: space-between;
 }
 
-/* Logo */
+/* 🔴 LOGO */
 .header-logo a {
   font-size: 26px;
   font-weight: 700;
@@ -29,17 +31,17 @@
   color: #e50914;
 }
 
-/* Nav */
+/* 🧭 NAV */
 .header-nav {
   display: flex;
-  gap: 32px;
+  gap: 28px;
 }
 
 .header-nav a {
-  color: #cccccc;
+  color: #b3b3b3;
   font-size: 15px;
   position: relative;
-  transition: color 0.3s ease;
+  transition: 0.3s;
 }
 
 .header-nav a:hover,
@@ -55,9 +57,34 @@
   position: absolute;
   left: 0;
   bottom: -6px;
+  border-radius: 5px;
 }
 
-/* Auth */
+/* 🔥 RIGHT SIDE */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* 🔍 SEARCH BOX */
+.search-box {
+  padding: 8px 14px;
+  border-radius: 25px;
+  border: 1px solid transparent;
+  outline: none;
+  background: #1a1a1a;
+  color: white;
+  width: 180px;
+  transition: 0.3s ease;
+}
+
+.search-box:focus {
+  border: 1px solid #e50914;
+  background: #111;
+}
+
+/* 🔐 AUTH */
 .header-auth {
   display: flex;
   align-items: center;
@@ -71,12 +98,12 @@
 
 .register-btn {
   padding: 8px 20px;
-  background: #e50914;
+  background: linear-gradient(45deg, #e50914, #ff2e2e);
   border-radius: 25px;
   color: #ffffff;
   font-size: 14px;
   font-weight: 500;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .register-btn:hover {
@@ -84,9 +111,74 @@
   box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
 }
 
-/* Responsive */
+/* 👤 USER BOX */
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #111827;
+  padding: 6px 12px;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.user-box:hover {
+  background: #1f2937;
+}
+
+/* AVATAR */
+.user-box img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #e50914;
+  transition: 0.3s;
+}
+
+.user-box:hover img {
+  transform: scale(1.1);
+}
+
+/* USER INFO */
+.user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.welcome-text {
+  font-size: 10px;
+  color: #888;
+}
+
+.user-info strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* LOGOUT BUTTON */
+.user-box button {
+  background: #e50914;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.user-box button:hover {
+  background: #b20710;
+  transform: scale(1.05);
+}
+
+/* 📱 RESPONSIVE */
 @media (max-width: 768px) {
   .header-nav {
     display: none;
+  }
+
+  .search-box {
+    width: 120px;
   }
 }

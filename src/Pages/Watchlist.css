@@ -1,0 +1,111 @@
+/* PAGE */
+.watchlist-page {
+  background: linear-gradient(to bottom, #0b0b0b, #141414);
+  min-height: 100vh;
+  padding: 100px 4% 40px;
+  color: white;
+}
+
+/* HERO */
+.watchlist-hero {
+  margin-bottom: 30px;
+}
+
+.watchlist-hero h1 {
+  font-size: 2.5rem;
+  color: #e50914;
+}
+
+.watchlist-hero p {
+  color: #aaa;
+}
+
+.watchlist-hero span {
+  color: #f5c518;
+  font-weight: bold;
+}
+
+/* GRID */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+/* CARD */
+.watchlist-card-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.watchlist-card-wrapper:hover {
+  transform: scale(1.07);
+}
+
+/* IMAGE */
+.movie-poster {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+.overlay h3 {
+  font-size: 14px;
+}
+
+.overlay span {
+  color: #f5c518;
+}
+
+/* REMOVE BUTTON */
+.remove-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.remove-btn:hover {
+  background: #e50914;
+}
+
+/* EMPTY */
+.empty-watchlist {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.empty-watchlist h2 {
+  font-size: 28px;
+}
+
+.empty-watchlist p {
+  color: #888;
+}
+
+.browse-btn {
+  margin-top: 15px;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #e50914;
+  border-radius: 20px;
+  color: white;
+}

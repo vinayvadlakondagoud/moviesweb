@@ -1,168 +1,314 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./User.css";
 
-const movies = [
-  {
-    id: 1,
-    title: "Pushpa 2",
-    rating: 8.0,
-    poster:
-      "https://m.media-amazon.com/images/M/MV5BZjllNTdiM2QtYjQ0Ni00ZGM1LWFlYmUtNWY0YjMzYWIxOTYxXkEyXkFqcGc@._V1_QL75_UX246_.jpg",
-  },
-  {
-    id: 16,
-    title: "Rangasthalam",
-    rating: 8.5,
-    poster:
-      "https://preview.redd.it/rangasthalam-v0-sp05kjtjd3091.jpg?width=640&crop=smart&auto=webp&s=329c940ff0d82e8f625039082a0e2fbef4b726b8",
-  },
-  
-  {
-    id: 3,
-    title: "Ala Vaikunthapurramuloo",
-    rating: 9.0,
-    poster:
-      "https://m.media-amazon.com/images/M/MV5BYTExMzM1MDMtOWY0Mi00NzU5LWJkMDYtOTMzNzY1ZGRjZDBlXkEyXkFqcGc@._V1_.jpg",
-  },
-  {
-    id: 9,
-    title: "Varanasi",
-    rating: 8.5,
-    poster:
-      "https://scontent.fbom28-1.fna.fbcdn.net/v/t39.30808-6/559280375_1156877329710679_2608863218890846642_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=A97YoQdHEh4Q7kNvwEf5Xz9&_nc_oc=AdnmPYXY2lkSea0yBQaSMR5pYkpvrNEPNYoi8T8YFDgSUqgj1jh-nYwCM86L7l-Uptk&_nc_zt=23&_nc_ht=scontent.fbom28-1.fna&_nc_gid=0q1HTfUWU-XGo8htkmSTdQ&oh=00_AfuLcxrH6UhXDm92Smjt0pUdvdpv16TEPIRAt2uhkh5Fhg&oe=6988DD31",
-  },
-  {
-    id: 14,
-    title: "Jai Lava Kusa",
-    rating: 8.5,
-    poster:
-      "https://m.media-amazon.com/images/M/MV5BOWU0ODEyY2YtZjZjZS00MWJiLTljYjktYTIwNzU4MWM4ZTZlXkEyXkFqcGc@._V1_.jpg",
-  },
-  {
-    id: 2,
-    title: "Sarrainodu",
-    rating: 8.6,
-    poster:
-      "https://m.media-amazon.com/images/M/MV5BYWQ1MzhlYjUtMmE1NS00ZWY4LWI1ZDgtMThmOWJhZGU4Mzk5XkEyXkFqcGc@._V1_QL75_UX234_.jpg",
-  },
-  {
-    id: 15,
-    title: "Bahubali 2",
-    rating: 8.5,
-    poster:
-      "https://cdna.artstation.com/p/assets/covers/images/006/935/246/large/venkata-sai-sandeep-siddam-cover.jpg?1502376753",
-  },
-  {
-    id: 5,
-    title: "Arya 2",
-    rating: 9.2,
-    poster:
-      "https://img.airtel.tv/unsafe/fit-in/500x0/filters:format(webp)/https://xstreamcp-assets-msp.streamready.in/assets/AHA/MOVIE/6867f6eb7257d17f4fef4e6a/images/PORTRAIT/0-2x3.jpg?o=production",
-  },
-  {
-    id: 17,
-    title: "RRR",
-    rating: 8.5,
-    poster:
-      "https://media-cache.cinematerial.com/p/500x/nj3okwvh/rrr-indian-movie-poster.jpg?v=1650045529",
-  },
-
-  {
-    id: 10,
-    title: "Maharshi",
-    rating: 8.5,
-    poster:
-      "https://m.media-amazon.com/images/M/MV5BZmU5NDU0YjktYzYwYy00N2FiLWI2YmYtNzhjOTg4NjkwN2IyXkEyXkFqcGc@._V1_.jpg",
-  },
-  {
-    id: 6,
-    title: "Julayi",
-    rating: 8.1,
-    poster:
-      "https://assets-in.bmscdn.com/iedb/movies/images/extra/vertical_logo/mobile/thumbnail/xxlarge/julayi-et00010073-05-07-2021-11-12-08.jpg",
-  },
-  {
-    id: 11,
-    title: "Bharat Ane Nenu",
-    rating: 8.5,
-    poster:
-      "https://upload.wikimedia.org/wikipedia/en/thumb/6/68/Bharat_Ane_Nenu_poster.jpg/250px-Bharat_Ane_Nenu_poster.jpg",
-  },
-  {
-    id: 12,
-    title: "Aravinda Sametha",
-    rating: 8.5,
-    poster:
-      "https://pbs.twimg.com/media/Ddjk7ubU8AEbL8S.jpg",
-  },
-  {
-    id: 4,
-    title: "Race Gurram",
-    rating: 8.4,
-    poster:
-      "https://m.media-amazon.com/images/M/MV5BYWQyZDkzOGYtNjFhNy00OTIyLTk0YzUtZjFmM2RmMjg5ZGM5XkEyXkFqcGc@._V1_.jpg",
-  },
-  {
-    id: 13,
-    title: "Janatha Garage",
-    rating: 8.5,
-    poster:
-      "https://i.redd.it/7-years-for-blockbuster-janatha-garage-despised-by-r-v0-bgqpq64wnllb1.png?width=847&format=png&auto=webp&s=8d5ad59fb9f584d57c8f48ebb336f0e67ce49b26",
-  },
-  {
-    id: 8,
-    title: "DJ",
-    rating: 8.5,
-    poster:
-      "https://i.pinimg.com/736x/b9/f9/8f/b9f98f9e4ca15753d7aa79ae25238dee.jpg",
-  },
-  {
-    id: 18,
-    title: "Magadheera",
-    rating: 8.5,
-    poster:
-      "https://m.media-amazon.com/images/M/MV5BMzQ0YWYyYjEtZTU2Ni00ZGZjLWJlZmQtYzliN2VlNDY0ZGE4XkEyXkFqcGc@._V1_.jpg",
-  },
-  {
-    id: 7,
-    title: "Naa Peru Surya",
-    rating: 7.9,
-    poster:
-      "https://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/masterrepository/fandango/210617/Naa%20Peru%20Surya.jpg",
-  },
-];
-
 const User = () => {
+
+  const [movies, setMovies] = useState([]);
+  const [recommendations, setRecommendations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // 🔥 FILTER STATES
+  const [genre, setGenre] = useState("");
+  const [industry, setIndustry] = useState("");
+
+  // 🔥 PROFILE STATES
+  const [userData, setUserData] = useState(null);
+  const [watchlistCount, setWatchlistCount] = useState(0);
+  const [favCount, setFavCount] = useState(0);
+
+  const [editMode, setEditMode] = useState(false);
+
+  const [formData, setFormData] = useState({
+    profilePic: "",
+  });
+
+  // 🔥 DEFAULT AVATAR
+  const getDefaultAvatar = (name) => {
+    let avatar = sessionStorage.getItem("defaultAvatar");
+
+    if (!avatar) {
+      const styles = ["initials", "identicon", "thumbs", "shapes"];
+      const style = styles[Math.floor(Math.random() * styles.length)];
+
+      avatar = `https://api.dicebear.com/7.x/${style}/svg?seed=${name}`;
+      sessionStorage.setItem("defaultAvatar", avatar);
+    }
+
+    return avatar;
+  };
+
+  // 🎬 FETCH DATA
+  useEffect(() => {
+
+    let url = "http://localhost:5000/api/movies";
+
+    const params = [];
+
+    if (genre) params.push(`genre=${genre}`);
+    if (industry) params.push(`industry=${industry}`);
+
+    if (params.length) {
+      url += `?${params.join("&")}`;
+    }
+
+    const fetchAllData = async () => {
+      try {
+        setLoading(true);
+
+        const userId = sessionStorage.getItem("userId");
+
+        if (userId) {
+          // PROFILE
+          const userRes = await fetch(
+            `http://localhost:5000/api/users/profile/${userId}`
+          );
+          const user = await userRes.json();
+          setUserData(user);
+
+          setFormData({
+            profilePic: user.profilePic || "",
+          });
+
+          // WATCHLIST COUNT
+          const countRes = await fetch(
+            `http://localhost:5000/api/watchlist-count/${userId}`
+          );
+          const countData = await countRes.json();
+          setWatchlistCount(countData.count);
+
+          // FAVORITES COUNT
+          const favRes = await fetch(
+            `http://localhost:5000/api/favorites-count/${userId}`
+          );
+          const favData = await favRes.json();
+          setFavCount(favData.count);
+
+          // RECOMMENDATIONS
+          const recRes = await fetch(
+            `http://localhost:5000/api/recommendations/${userId}`
+          );
+          const recData = await recRes.json();
+          setRecommendations(recData);
+        }
+
+        // MOVIES
+        const res = await fetch(url);
+        const data = await res.json();
+        setMovies(data);
+
+      } catch (err) {
+        console.error("Error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllData();
+  }, [genre, industry]);
+
+  // 🔥 UPDATE PROFILE PIC
+  const handleUpdate = async () => {
+    const userId = sessionStorage.getItem("userId");
+
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/users/profile/${userId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            profilePic: formData.profilePic,
+          }),
+        }
+      );
+
+      const data = await res.json();
+
+      setUserData(data);
+      setFormData({ profilePic: data.profilePic });
+      setEditMode(false);
+
+    } catch (err) {
+      console.error("Update error:", err);
+    }
+  };
+
+  // 🎬 IMAGE HANDLER
+  const getImageUrl = (url) => {
+    if (!url) return "https://placehold.co/500x750?text=No+Poster";
+    if (url.startsWith("http")) return url;
+    return `https://image.tmdb.org/t/p/w500${url}`;
+  };
+
+  const defaultAvatar = getDefaultAvatar(userData?.name || "User");
+
   return (
     <div className="user-dashboard">
       <div className="user-container">
-        {/* HEADER */}
+
+        {/* 🔥 PROFILE */}
         <header className="user-header">
-          <h1>Welcome, Vinay 👋</h1>
-          <p>Explore popular Telugu blockbusters</p>
+          <div className="profile-banner">
+
+            <div className="banner-bg"></div>
+
+            <div className="profile-left">
+              <img
+                src={
+                  editMode
+                    ? formData.profilePic || userData?.profilePic || defaultAvatar
+                    : userData?.profilePic || defaultAvatar
+                }
+                alt="profile"
+                className="profile-img premium-img"
+                onError={(e) => {
+                  e.target.src = defaultAvatar;
+                }}
+              />
+            </div>
+
+            <div className="profile-center">
+              <h2 className="profile-name">
+                {userData?.name || "User"}
+              </h2>
+
+              <p className="profile-email">
+                {userData?.email}
+              </p>
+
+              <div className="stats premium-stats">
+                <span>🎬 {watchlistCount} Watchlist</span>
+                <span>❤️ {favCount} Favorites</span>
+              </div>
+
+              {editMode && (
+                <div className="edit-box">
+                  <input
+                    type="text"
+                    value={formData.profilePic}
+                    placeholder="Paste Image URL"
+                    onChange={(e) =>
+                      setFormData({
+                        profilePic: e.target.value,
+                      })
+                    }
+                  />
+                  <button onClick={handleUpdate}>Save</button>
+                </div>
+              )}
+            </div>
+
+            <div className="profile-actions">
+              <button onClick={() => setEditMode(!editMode)}>
+                {editMode ? "Cancel" : "Change Photo"}
+              </button>
+            </div>
+
+          </div>
         </header>
 
-        {/* MOVIES */}
+        {/* 🔥 FILTER UI */}
+        <div className="filter-container">
+
+          {/* INDUSTRY */}
+          <div className="filter-section">
+            <h4>Industry</h4>
+
+            <div className="filter-pills">
+              <button onClick={() => setIndustry("")} className={!industry ? "active" : ""}>All</button>
+              <button onClick={() => setIndustry("Bollywood")} className={industry==="Bollywood" ? "active" : ""}>Bollywood</button>
+              <button onClick={() => setIndustry("Tollywood")} className={industry==="Tollywood" ? "active" : ""}>Tollywood</button>
+              <button onClick={() => setIndustry("Hollywood")} className={industry==="Hollywood" ? "active" : ""}>Hollywood</button>
+              <button onClick={() => setIndustry("Mollywood")} className={industry==="Mollywood" ? "active" : ""}>Mollywood</button>
+              <button onClick={() => setIndustry("Kollywood")} className={industry==="Kollywood" ? "active" : ""}>Kollywood</button>
+            </div>
+          </div>
+
+          {/* GENRE */}
+          <div className="filter-section">
+            <h4>Genre</h4>
+
+            <div className="filter-pills">
+              <button onClick={() => setGenre("")} className={!genre ? "active" : ""}>All</button>
+              <button onClick={() => setGenre("Action")} className={genre==="Action" ? "active" : ""}>Action</button>
+              <button onClick={() => setGenre("Drama")} className={genre==="Drama" ? "active" : ""}>Drama</button>
+              <button onClick={() => setGenre("Crime")} className={genre==="Crime" ? "active" : ""}>Crime</button>
+              <button onClick={() => setGenre("Comedy")} className={genre==="Comedy" ? "active" : ""}>Comedy</button>
+              <button onClick={() => setGenre("Thriller")} className={genre==="Thriller" ? "active" : ""}>Thriller</button>
+            </div>
+          </div>
+
+        </div>
+
+        {/* 🎬 MOVIES */}
         <section className="movies-section">
           <h2>Popular Movies</h2>
 
-          <div className="movie-grid">
-            {movies.map((movie) => (
-              <div className="movie-card" key={movie.id}>
-                <img
-                  src={movie.poster}
-                  alt={movie.title}
-                  className="movie-poster"
-                />
+          {loading ? (
+            <p>Loading movies...</p>
+          ) : (
+            <div className="movie-grid">
+              {movies.map((movie) => (
+                <Link
+                  to={`/movie/${movie._id}`}
+                  key={movie._id}
+                  className="movie-link"
+                >
+                  <div className="movie-card">
+                    <img
+                      src={getImageUrl(movie.posterUrl)}
+                      alt={movie.title}
+                      className="movie-poster"
+                    />
 
-                <div className="movie-info">
-                  <h3>{movie.title}</h3>
-                  <span>⭐ {movie.rating}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+                    <div className="movie-info">
+                      <h3>{movie.title}</h3>
+                      <span>⭐ {movie.rating}</span>
+                    </div>
+
+                    <div className="movie-description">
+                      {movie.description}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </section>
+
+        {/* 🤖 RECOMMENDATIONS */}
+        <section className="recommend-section">
+          <div className="recommend-header">
+            <h2>Recommended For You</h2>
+            <span className="ai-tag">AI Powered 🤖</span>
+          </div>
+
+          {recommendations.length > 0 ? (
+            <div className="recommend-row">
+              {recommendations.map((movie) => (
+                <Link
+                  to={`/movie/${movie._id}`}
+                  key={movie._id}
+                  className="recommend-card"
+                >
+                  <img
+                    src={getImageUrl(movie.posterUrl)}
+                    alt={movie.title}
+                  />
+
+                  <div className="recommend-overlay">
+                    <h3>{movie.title}</h3>
+                    <span>⭐ {movie.rating}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p>No recommendations yet</p>
+          )}
+        </section>
+
       </div>
     </div>
   );
