@@ -1,2 +1,18 @@
-/* Reuse Login styles for perfect consistency */
 @import "./Login.css";
+
+.register-only {
+    max-width: 450px;
+    height: auto !important; 
+    padding: 20px 0;
+}
+
+.register-only .login-form {
+    flex: 1;
+    padding: 40px;
+}
+
+@media (max-width: 500px) {
+    .register-only {
+        width: 90%;
+    }
+}

@@ -1,3 +1,4 @@
+
 .login-page {
   min-height: 100vh;
   background: linear-gradient(to right, #000000cc, #000000cc),
@@ -8,7 +9,6 @@
   justify-content: center;
 }
 
-/* Card */
 .login-container {
   width: 900px;
   height: 480px;
@@ -19,7 +19,6 @@
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
 }
 
-/* Left */
 .login-brand {
   flex: 1;
   background: linear-gradient(135deg, #e50914, #b00610);
@@ -47,7 +46,6 @@
   line-height: 1.7;
 }
 
-/* Right */
 .login-form {
   flex: 1;
   padding: 60px;
@@ -61,7 +59,6 @@
   margin-bottom: 20px;
 }
 
-/* Error */
 .login-error {
   background: #2b0000;
   color: #ff6b6b;
@@ -71,7 +68,6 @@
   margin-bottom: 15px;
 }
 
-/* Inputs */
 .form-group {
   margin-bottom: 18px;
 }
@@ -93,7 +89,6 @@
   color: #ffffff;
 }
 
-/* Button */
 .login-btn {
   margin-top: 10px;
   padding: 12px;
@@ -112,14 +107,19 @@
   box-shadow: 0 8px 25px rgba(229, 9, 20, 0.6);
 }
 
-/* Hint */
 .login-hint {
-  margin-top: 18px;
+  margin-top: 16px;
+  font-size: 18px;
+  color: #aaaaaa;
+  text-align: center;
+}
+
+.login-hint1 {
+  margin-top: 15px;
   font-size: 13px;
   color: #aaaaaa;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .login-container {
     width: 90%;
