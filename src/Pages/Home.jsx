@@ -4,6 +4,7 @@ import "./Home.css";
 const Home = () => {
   return (
     <main className="home">
+      {/* ============ HERO ============ */}
       <section className="hero">
         <div className="hero-content">
           <h1>

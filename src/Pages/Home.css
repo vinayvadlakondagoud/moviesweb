@@ -9,8 +9,16 @@
   width: 100%;
 
   background:
-    linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-    url("https://i.ytimg.com/vi/p7wHWdtV7BI/hq720.jpg");
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.94) 0%,
+      rgba(0, 0, 0, 0.86) 28%,
+      rgba(0, 0, 0, 0.55) 52%,
+      rgba(0, 0, 0, 0.22) 74%,
+      rgba(0, 0, 0, 0.12) 100%
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 74%, rgba(0, 0, 0, 0.72) 100%),
+    url("../assets/MoviesWeb Cinematic Movie Hub.png");
 
   background-size: cover;
   background-position: center;
